@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Agent {
+  id            String    @id @default(uuid())
+  name          String
+  role          String
+  status        String    @default("idle")
+  current_task  String?
+  last_heartbeat DateTime @default(now())
+  created_at    DateTime  @default(now())
+  activities    Activity[]
+}
+
+model Activity {
+  id          String   @id @default(uuid())
+  agent_id    String
+  event       String
+  task_id     String?
+  message     String?
+  metadata    String?
+  created_at  DateTime @default(now())
+  agent       Agent    @relation(fields: [agent_id], references: [id], onDelete: Cascade)
+}
