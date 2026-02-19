@@ -28,3 +28,24 @@ model Activity {
   created_at  DateTime @default(now())
   agent       Agent    @relation(fields: [agent_id], references: [id], onDelete: Cascade)
 }
+
+model AlertRule {
+  id          String   @id @default(uuid())
+  name        String
+  metric      String   // cpu, memory, errors, response_time
+  threshold   Float
+  condition   String   // gt, lt, eq
+  notify_type String   // email, webhook, discord
+  destination String   // webhook URL, email, channel ID
+  enabled     Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime 
+}
+
+model AlertHistory {
+  id          String   @id @default(uuid())
+  alert_rule_id String
+  message     String
+  triggered_at DateTime @default(now())
+  acknowledged Boolean @default(false)
+}
