@@ -8,7 +8,8 @@ import {
   ArrowRight,
   Bot,
   Folder,
-  Plus
+  Plus,
+  Bell
 } from 'lucide-react'
 
 // This would be fetched from /api/board in real app
@@ -77,6 +78,10 @@ export default function Dashboard() {
               <Link href="/projects" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
                 <Folder className="w-4 h-4" />
                 Projects
+              </Link>
+              <Link href="/alerts" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+                <Bell className="w-4 h-4" />
+                Alerts
               </Link>
               <Link href="/agents" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
                 <Bot className="w-4 h-4" />
