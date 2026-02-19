@@ -33,6 +33,14 @@ const projects = [
     folder: 'projects/whop-course-ai-automation',
     status: 'active',
     tickets: { total: 4, done: 1, inProgress: 1, todo: 2 }
+  },
+  {
+    id: 4,
+    name: 'CartRecall',
+    folder: 'AI Customer Re-engagement',
+    status: 'active',
+    tickets: { total: 1, done: 0, inProgress: 1, todo: 0 },
+    link: '/cartrecall'
   }
 ]
 
@@ -88,7 +96,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <StatCard 
             title="Total Projects" 
-            value="3" 
+            value="4" 
             icon={<Folder className="w-6 h-6 text-blue-500" />}
           />
           <StatCard 
@@ -121,46 +129,49 @@ export default function Dashboard() {
             
             <div className="grid gap-4">
               {projects.map((project) => (
-                <div 
+                <Link
                   key={project.id}
-                  className="bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition"
+                  href={project.link || '#'}
+                  className={project.link ? "block" : "pointer-events-none"}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="font-semibold text-lg">{project.name}</h3>
-                      <p className="text-sm text-gray-400">{project.folder}</p>
+                  <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="font-semibold text-lg">{project.name}</h3>
+                        <p className="text-sm text-gray-400">{project.folder}</p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-xs ${
+                        project.status === 'active' 
+                          ? 'bg-green-500/20 text-green-400' 
+                          : 'bg-gray-500/20 text-gray-400'
+                      }`}>
+                        {project.status}
+                      </span>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs ${
-                      project.status === 'active' 
-                        ? 'bg-green-500/20 text-green-400' 
-                        : 'bg-gray-500/20 text-gray-400'
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  
-                  <div className="flex gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                      <span className="text-gray-400">{project.tickets.done} done</span>
+                    
+                    <div className="flex gap-4 text-sm">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-gray-400">{project.tickets.done} done</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <span className="text-gray-400">{project.tickets.inProgress} in progress</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+                        <span className="text-gray-400">{project.tickets.todo} todo</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                      <span className="text-gray-400">{project.tickets.inProgress} in progress</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-gray-500"></div>
-                      <span className="text-gray-400">{project.tickets.todo} todo</span>
-                    </div>
-                  </div>
 
-                  <div className="mt-4 bg-gray-700 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all"
-                      style={{ width: `${(project.tickets.done / project.tickets.total) * 100}%` }}
-                    />
+                    <div className="mt-4 bg-gray-700 rounded-full h-2">
+                      <div 
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all"
+                        style={{ width: `${(project.tickets.done / project.tickets.total) * 100}%` }}
+                      />
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
