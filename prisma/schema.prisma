@@ -61,3 +61,15 @@ model HistoricalMetric {
 
   @@index([agent_id, metric_type, recorded_at])
 }
+
+model ExternalAgent {
+  id          String   @id @default(uuid())
+  name        String
+  url         String   // Agent's API endpoint
+  apiKey      String   // For authentication
+  status      String   @default("unknown") // unknown, online, offline, error
+  lastCheck   DateTime?
+  lastMetrics String?  // JSON string of last metrics
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
