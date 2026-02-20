@@ -1,11 +1,13 @@
-name: Vercel Production Deployment
+name: CI
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,15 +19,16 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm ci
 
       - name: Generate Prisma Client
         run: npx prisma generate
 
-      - name: Build Project
+      - name: Build
         run: npm run build
 
-      - name: Deploy to Vercel
-        uses: am太原n/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
