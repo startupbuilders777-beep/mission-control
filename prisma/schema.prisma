@@ -16,6 +16,7 @@ model Agent {
   last_heartbeat DateTime @default(now())
   created_at    DateTime  @default(now())
   activities    Activity[]
+  historicalMetrics HistoricalMetric[]
 }
 
 model Activity {
@@ -48,4 +49,15 @@ model AlertHistory {
   message     String
   triggered_at DateTime @default(now())
   acknowledged Boolean @default(false)
+}
+
+model HistoricalMetric {
+  id          String   @id @default(uuid())
+  agent_id    String
+  metric_type String   // cpu, memory, requests, errors, response_time
+  value       Float
+  recorded_at DateTime @default(now())
+  agent       Agent    @relation(fields: [agent_id], references: [id], onDelete: Cascade)
+
+  @@index([agent_id, metric_type, recorded_at])
 }
