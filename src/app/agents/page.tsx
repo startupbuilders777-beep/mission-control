@@ -1,3 +1,4 @@
+import ExternalAgentsSection from '@/components/ExternalAgents'
 import Link from 'next/link'
 import { 
   BarChart3, 
@@ -213,6 +214,8 @@ export default function AgentsPage() {
             </div>
           ))}
         </div>
+
+        <ExternalAgentsSection />
       </main>
     </div>
   )
