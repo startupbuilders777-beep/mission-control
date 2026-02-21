@@ -73,3 +73,17 @@ model ExternalAgent {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
+
+model Session {
+  id            String    @id @default(uuid())
+  agent_id      String
+  agent_name    String
+  task_name     String?
+  input         String    // User input or task description
+  output        String?   // Agent output or result
+  status        String    @default("running") // running, completed, failed
+  duration_ms   Int?      // Duration in milliseconds
+  started_at    DateTime  @default(now())
+  completed_at  DateTime?
+  metadata      String?   // JSON string for additional data
+}

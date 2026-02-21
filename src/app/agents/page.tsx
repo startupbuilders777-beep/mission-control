@@ -18,7 +18,8 @@ import {
   Check,
   Rocket,
   Menu,
-  X
+  X,
+  History
 } from 'lucide-react'
 
 // This would be fetched from /api/agents in real app
@@ -137,6 +138,10 @@ export default function AgentsPage() {
               <Link href="/kpi" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
                 <BarChart3 className="w-4 h-4" />
                 KPI
+              </Link>
+              <Link href="/sessions" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+                <History className="w-4 h-4" />
+                Sessions
               </Link>
             </div>
 
