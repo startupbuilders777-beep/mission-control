@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Mission Control - Agent Swarm Dashboard',
   description: 'Monitor all agents, projects, and tasks in real-time',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 }
 
 export default function RootLayout({
