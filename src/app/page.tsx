@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { 
   BarChart3, 
@@ -9,8 +11,28 @@ import {
   Bot,
   Folder,
   Plus,
-  Bell
+  Bell,
+  Moon,
+  Sun
 } from 'lucide-react'
+import { Header } from '@/components/Header'
+import { ThemeProvider, useTheme } from '@/components/ThemeProvider'
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme()
+  
+  if (!theme) return null // Loading state
+  
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+    >
+      {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+    </button>
+  )
+}
 
 // This would be fetched from /api/board in real app
 const projects = [
@@ -60,9 +82,9 @@ const recentActivity = [
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -71,22 +93,23 @@ export default function Dashboard() {
               </div>
               <div>
                 <h1 className="text-xl font-bold">Mission Control</h1>
-                <p className="text-xs text-gray-400">Agent Swarm Dashboard</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Agent Swarm Dashboard</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/projects" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <Link href="/projects" className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
                 <Folder className="w-4 h-4" />
                 Projects
               </Link>
-              <Link href="/alerts" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <Link href="/alerts" className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
                 <Bell className="w-4 h-4" />
                 Alerts
               </Link>
-              <Link href="/agents" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <Link href="/agents" className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
                 <Bot className="w-4 h-4" />
                 Agents
               </Link>
+              <ThemeToggle />
               <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">
                 <Plus className="w-4 h-4" />
                 New Task
