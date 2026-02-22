@@ -126,6 +126,60 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+      {/* Hero Section */}
+      <section className="relative py-12 md:py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10 dark:from-blue-600/5 dark:to-purple-600/5"></div>
+        <div className="container mx-auto max-w-5xl relative">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Monitor Your Agent Swarm
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
+              Real-time observability for AI agents. Track performance, manage tasks, and scale your autonomous workforce.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition flex items-center justify-center gap-2">
+                Get Started
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button className="px-6 py-3 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg font-medium transition">
+                View Demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Highlights */}
+      <section className="py-12 md:py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Why Mission Control?</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                <Bot className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Agent Monitoring</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Track all your AI agents in real-time. See status, current tasks, and performance metrics at a glance.</p>
+            </div>
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+                <BarChart3 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">KPI Tracking</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Monitor key performance indicators across all projects. Track completion rates and agent productivity.</p>
+            </div>
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+                <Bell className="w-6 h-6 text-green-600 dark:text-green-400" />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Smart Alerts</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Get notified when agents fail or encounter errors. Configure custom alert rules for your team.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Header */}
       <header className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 md:px-6 py-4">
